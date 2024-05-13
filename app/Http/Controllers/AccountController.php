@@ -103,4 +103,32 @@ class AccountController extends Controller
        Auth::logout();
        return redirect()->route('account.login')->with('success','logout successfull');
     }
+
+    public function changePassword() {
+        return view('account.changePassword');
+    }
+    public function changePasswordPost(Request $request) {
+        $validator = Validator::make($request->all() ,[
+            'old_password' => 'required',
+            'new_password' => 'required',
+            'password_confirm' => 'required|same:new_password',
+        ]);
+
+        if($validator->passes()) {
+            $user = User::select('id','password')->where('id', Auth::user()->id)->first(); 
+            if(!Hash::check($request->old_password ,$user->password)) {
+                return redirect()->route('account.changePassword')->with('error','your old password is incorrect');
+            }
+           User::where('id',$user->id)->update([
+            'password' => Hash::make($request->new_password)
+           ]);
+
+           session()->flash('success','You Updated your password');
+           return redirect()->route('account.profile')->with('success','password updated successfully');
+        } else {
+         return redirect()->route('account.changePassword')->withInput()->withErrors($validator->errors());
+        }
+       
+    }
+
 }

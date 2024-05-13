@@ -5,29 +5,7 @@
           
             <div class="row my-5">
                 <div class="col-md-3">
-                    <div class="card border-0 shadow-lg">
-                        <div class="card-header  text-white">
-                            Welcome, {{ $user->name }}                        
-                        </div>
-                        <div class="card-body">
-                            <div class="text-center mb-3">
-                                <img src="{{ asset('uploads/profile/thumb/'.$user->image) }}" class="img-fluid rounded-circle" alt="{{ $user->name }}">                            
-                            </div>
-                            <div class="h5 text-center">
-                                <strong>{{ $user->name }}</strong>
-                                <p class="h6 mt-2 text-muted">5 Reviews</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card border-0 shadow-lg mt-3">
-                        <div class="card-header  text-white">
-                            Navigation
-                        </div>
-                        <div class="card-body sidebar">
                             @include('layouts.sidebar')
-                            
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-9">
                 @include('layouts.message')
