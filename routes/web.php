@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail/{id}', [HomeController::class, 'detail'])->name('detail');
+Route::post('/saveReview', [HomeController::class, 'saveReview'])->name('saveReview');
 
 Route::group(['prefix' => 'account'] ,function() {
     Route::group(['middleware' => 'guest'] ,function() {
@@ -27,6 +28,10 @@ Route::group(['prefix' => 'account'] ,function() {
         Route::get('/book/delete/{id}',[BookController::class, 'delete'])->name('books.delete');
         Route::get('/changePassword', [AccountController::class, 'changePassword'])->name('account.changePassword');
         Route::post('/changePasswordPost', [AccountController::class, 'changePasswordPost'])->name('account.changePasswordPost');
+        Route::get('/reviews', [AccountController::class, 'reviews'])->name('account.reviews');
+        Route::get('/review/delete/{id}',[AccountController::class, 'delete'])->name('review.delete');
+        Route::get('/my-reviews', [AccountController::class, 'myReviews'])->name('account.myReviews');
+        Route::get('/my-review/delete/{id}',[AccountController::class, 'destroy'])->name('myReview.delete');
 
     });
 });

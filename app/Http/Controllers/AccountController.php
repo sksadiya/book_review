@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use App\Models\User;
 use Auth;
 use File;
@@ -131,4 +132,30 @@ class AccountController extends Controller
        
     }
 
+    public function reviews() {
+        $reviews = Review::with('user','book')->paginate(5);
+        return view('account.reviews', compact('reviews'));
+    }
+
+    public function delete($id) {
+        $review = Review::find($id);
+        if($review == null) {
+            return redirect()->route('account.reviews')->with('error','Record Not found');
+        }
+        $review->delete();
+        return redirect()->route('account.reviews')->with('success','book deleted successfull');
+    }
+
+    public function myReviews() {
+        $reviews = Review::where('user_id', Auth::id())->with('user','book')->paginate(5);
+        return view('account.myReviews', compact('reviews'));
+    }
+    public function destroy($id) {
+        $review = Review::find($id);
+        if($review == null) {
+            return redirect()->route('account.myReviews')->with('error','Record Not found');
+        }
+        $review->delete();
+        return redirect()->route('account.myReviews')->with('success','book deleted successfull');
+    }
 }

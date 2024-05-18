@@ -23,14 +23,14 @@
         <a href="{{ route('books.list') }}">Books</a>                               
     </li>
     <li class="nav-item">
-        <a href="reviews.html">Reviews</a>                               
+        <a href="{{ route('account.reviews') }}">Reviews</a>                               
     </li>
     @endif
     <li class="nav-item">
         <a href="{{ route('account.profile') }}">Profile</a>                               
     </li>
     <li class="nav-item">
-        <a href="my-reviews.html">My Reviews</a>
+        <a href="{{ route('account.myReviews') }}">My Reviews</a>
     </li>
     <li class="nav-item">
         <a href="{{ route('account.changePassword') }}">Change Password</a>

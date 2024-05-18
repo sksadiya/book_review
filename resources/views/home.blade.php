@@ -37,7 +37,7 @@
                                 <h3 class="h4 heading"><a href="{{ route('detail',$book->id) }}">{{ $book->title }}</a></h3>
                                 <p>by {{ $book->author }}</p>
                                 <div class="star-rating d-inline-flex ml-2" title="">
-                                    <span class="rating-text theme-font theme-yellow">5.0</span>
+                                    <span class="rating-text theme-font theme-yellow">{{ number_format($book->average_rating, 1) }}</span>
                                     <div class="star-rating d-inline-flex mx-2" title="">
                                         <div class="back-stars ">
                                             <i class="fa fa-star " aria-hidden="true"></i>
@@ -46,7 +46,7 @@
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
         
-                                            <div class="front-stars" style="width: 100%">
+                                            <div class="front-stars" style="width: {{ $book->average_rating * 20 }}%">
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -55,7 +55,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="theme-font text-muted">(2 Reviews)</span>
+                                    <span class="theme-font text-muted">({{ $book->reviews_count }} Reviews)</span>
                                 </div>
                             </div>
                         </div>
