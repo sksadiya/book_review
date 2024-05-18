@@ -6,6 +6,7 @@
                 @include('layouts.sidebar')           
             </div>
             <div class="col-md-9">
+            @include('layouts.message')           
                 
                 <div class="card border-0 shadow">
                     <div class="card-header  text-white">
@@ -34,7 +35,7 @@
                                             <td>Block</td>
                                         @endif
                                         <td>
-                                            <a href="edit-review.html" class="btn btn-primary btn-sm"><i class="fa-regular fa-pen-to-square"></i>
+                                            <a href="{{ route('account.edit-my-reviews',$review->id) }}" class="btn btn-primary btn-sm"><i class="fa-regular fa-pen-to-square"></i>
                                             </a>
                                             <a href="{{ route('myReview.delete',$review->id) }}" onclick="return confirm('are you sure?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                         </td>

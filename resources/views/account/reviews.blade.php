@@ -36,7 +36,7 @@
                                             <td>Block</td>
                                         @endif
                                         <td>
-                                            <a href="edit-review.html" class="btn btn-primary btn-sm"><i class="fa-regular fa-pen-to-square"></i>
+                                            <a href="{{ route('account.edit-reviews',$review->id) }}" class="btn btn-primary btn-sm"><i class="fa-regular fa-pen-to-square"></i>
                                             </a>
                                             <a href="{{ route('review.delete',$review->id) }}" onclick="return confirm('are you sure?')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                         </td>

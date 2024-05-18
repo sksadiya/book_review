@@ -156,6 +156,56 @@ class AccountController extends Controller
             return redirect()->route('account.myReviews')->with('error','Record Not found');
         }
         $review->delete();
-        return redirect()->route('account.myReviews')->with('success','book deleted successfull');
+        return redirect()->route('account.myReviews')->with('success','review deleted successfull');
+    }
+    public function edit($id) {
+        $review = Review::find($id);
+        if($review == null) {
+            return redirect()->route('account.myReviews')->with('error','Record Not found');
+        }
+        return view('account.editReview', compact('review'));
+    }
+    public function update($id,Request $request) {
+        $review = Review::find($id);
+        if($review == null) {
+            return redirect()->route('account.myReviews')->with('error','Record Not found');
+        }
+       $validator = Validator::make($request->all(), [
+        'review' => 'required|min:10',
+        'rating' => 'required',
+       ]);
+       if($validator->passes()) {
+        $review->review = $request->review;
+        $review->ratings = $request->rating;
+        $review->save();
+        return redirect()->route('account.myReviews')->with('success','review updated successfully');
+       } else {
+        return redirect()->route('account.edit-my-reviews',$id)->withErrors($validator->errors());
+       }
+    }
+    public function editReview($id) {
+        $review = Review::find($id);
+        if($review == null) {
+            return redirect()->route('account.reviews')->with('error','Record Not found');
+        }
+        return view('account.editAdminReview', compact('review'));
+    }
+    public function updateReview($id,Request $request) {
+        $review = Review::find($id);
+        if($review == null) {
+            return redirect()->route('account.reviews')->with('error','Record Not found');
+        }
+       $validator = Validator::make($request->all(), [
+        'review' => 'required|min:10',
+        'rating' => 'required',
+       ]);
+       if($validator->passes()) {
+        $review->review = $request->review;
+        $review->ratings = $request->rating;
+        $review->save();
+        return redirect()->route('account.reviews')->with('success','review updated successfully');
+       } else {
+        return redirect()->route('account.edit-reviews',$id)->withErrors($validator->errors());
+       }
     }
 }
