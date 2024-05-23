@@ -198,10 +198,12 @@ class AccountController extends Controller
        $validator = Validator::make($request->all(), [
         'review' => 'required|min:10',
         'rating' => 'required',
+        'status' => 'required',
        ]);
        if($validator->passes()) {
         $review->review = $request->review;
         $review->ratings = $request->rating;
+        $review->status = $request->status;
         $review->save();
         return redirect()->route('account.reviews')->with('success','review updated successfully');
        } else {

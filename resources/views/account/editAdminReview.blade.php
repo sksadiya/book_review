@@ -36,6 +36,16 @@
                                         <p class="invalid-feedback">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="mb-3">
+                                <label for="status" class="form-label">Status</label>
+                                <select name="status" id="status" class="form-control" placeholder="status">
+                                        <option {{ ($review->status == 1) ? 'selected' : '' }} value="1">Approve</option>
+                                        <option {{ ($review->status == 0) ? 'selected' : '' }} value="0">Disapprove</option>
+                                    </select>
+                                    @error('status')
+                                        <p class="invalid-feedback">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 <button class="btn btn-primary mt-2">Update</button>                     
                             </div>
                         </form>
